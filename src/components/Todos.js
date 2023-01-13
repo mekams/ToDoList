@@ -7,9 +7,7 @@ export default class Todos extends Component {
 	state = {
 		addTodoValue: "",
 		editTodo: {},
-		todos: localStorage.getItem("todos")
-			? JSON.parse(localStorage.getItem("todos"))
-			: [],
+		todos: localStorage.getItem("todos") ? JSON.parse(localStorage.getItem("todos")) : []
 	};
 
 	//Local helper method to get date
@@ -80,27 +78,18 @@ export default class Todos extends Component {
 				{this.state.todos?.length <= 0 && (
 					<div className='alert alert-info text-center' role='alert'>
 						<b>No Todos Added</b>
-					</div>
+					</div>						//alert set if blank box >todos
 				)}
 				<table className='table'>
 					<tbody>
 						{this.state.todos.map((todo, index) => (
 							<tr key={todo.id}>
-								<Todo
-									index={index + 1}
-									todo={todo}
-									fooDelete={this.handleDelete}
-									fooDoneDone={this.handleDone}
-									fooEdit={this.setEditValue}
-								/>
+								<Todo index={index + 1} todo={todo} fooDelete={this.handleDelete} fooDoneDone={this.handleDone} fooEdit={this.setEditValue} />
 							</tr>
 						))}
 						<tr>
-							<td colSpan='4' className='text-center'>
-								<AddTodo
-									fooAddTodo={this.addNewTodo}
-									addTodoValue={this.state.addTodoValue}
-								/>
+							<td colSpan='6' className='text-center'>
+								<AddTodo fooAddTodo={this.addNewTodo} addTodoValue={this.state.addTodoValue} />
 							</td>
 						</tr>
 					</tbody>
